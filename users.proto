@@ -1,0 +1,10 @@
+package tutorial;
+message User {
+	required string name = 1;
+	required int32 id = 2;
+	required string email = 3;
+}
+
+message ListUsers {
+	repeated User user = 1;
+}
