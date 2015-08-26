@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='users.proto',
   package='tutorial',
-  serialized_pb=_b('\n\x0busers.proto\x12\x08tutorial\"/\n\x04User\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\n\n\x02id\x18\x02 \x02(\x05\x12\r\n\x05\x65mail\x18\x03 \x02(\t\")\n\tListUsers\x12\x1c\n\x04user\x18\x01 \x03(\x0b\x32\x0e.tutorial.User')
+  serialized_pb=_b('\n\x0busers.proto\x12\x08tutorial\"/\n\x04User\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\n\n\x02id\x18\x02 \x02(\x05\x12\r\n\x05\x65mail\x18\x03 \x01(\t\")\n\tListUsers\x12\x1c\n\x04user\x18\x01 \x03(\x0b\x32\x0e.tutorial.User')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -48,7 +48,7 @@ _USER = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='email', full_name='tutorial.User.email', index=2,
-      number=3, type=9, cpp_type=9, label=2,
+      number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,

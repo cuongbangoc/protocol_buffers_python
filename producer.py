@@ -1,12 +1,15 @@
 import users_pb2
 import sys
-import pika
 import config as cfg
+import rabbit
+
+r = rabbit.Rabbit()
+list_users = users_pb2.ListUsers()
 
 def input(user):
-    user.id = 1
-    user.name = "cuongbn"
-    email = "cuongbn@sigma-solutions.eu"
+    user.id = int(raw_input("Enter User ID: "))
+    user.name = raw_input("Enter name: ")
+    email = raw_input("Enter email address (blank for none): ")
 
     if email != '':
         user.email = email
@@ -23,29 +26,14 @@ def send_rabbit(data):
     connection.close()
 
 
-file_name = 'data'
-list_users = users_pb2.ListUsers()
-
-# Read the existing user
 try:
-    f = open(file_name, 'rb')
-    list_users.ParseFromString(f.read())
-    f.close()
-except IOError as e:
-    print("file {} not exist. Creating a new file".format(file_name))
-
-# Add list users
-input(list_users.user.add())
-
-# Write the new list users to file
-try:
-    #f = open(file_name, 'wb')
+    # Add list users
+    input(list_users.user.add())
+    # encode data
     data_encode = list_users.SerializeToString()
     # Send to rabbit
-    send_rabbit(data_encode)
+    r.send(cfg.QUEUE_TOPIC, data_encode)
 
-    #f.write(data_encode)
-    #f.close()
 except Exception as e:
-    print("Write file is error")
+    print("Send data is error")
     print(e)
